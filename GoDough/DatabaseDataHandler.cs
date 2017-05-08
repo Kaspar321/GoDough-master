@@ -1,0 +1,172 @@
+﻿using System;
+using System.IO;
+using Mono.Data.Sqlite;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace GoDough
+{
+    public sealed class DatabaseDataHandler
+    {
+        /*
+        private static DatabaseDataHandler instance = null;
+        private static readonly object padlock = new object();
+        string dbPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+        "Ores.db3");
+
+        Dictionary<string, int> imageResources = new Dictionary<string, int>() {
+            {"Copper Ore",Resource.Drawable.Copper_Ore},
+            {"Tin Ore",Resource.Drawable.Tin_Ore},
+            {"Iron Ore",Resource.Drawable.Iron_Ore},
+            {"Silver Ore",Resource.Drawable.Silver_Ore},
+            {"Mithril Ore",Resource.Drawable.Mithril_Ore},
+            {"Adamantite Ore",Resource.Drawable.Adamantite_Ore},
+            {"Runite Ore",Resource.Drawable.Runite_Ore},
+            {"Coal Ore",Resource.Drawable.Coal_Ore}};
+        SqliteConnection connection;
+
+
+
+        DatabaseDataHandler()
+        {
+
+            if (!File.Exists(dbPath))
+            {
+                // Need to create the database before seeding it with some data
+                SqliteConnection.CreateFile(dbPath);
+
+                var commands = new[] {
+                "CREATE TABLE UserData (balance INTEGER, currency VARCHAR(1));",
+                "INSERT INTO UserData (balance, currency) VALUES ('0','€')"
+                };
+
+                connection = new SqliteConnection("Data Source=" + dbPath);
+                connection.Open();
+
+                foreach (var command in commands)
+                {
+                    executeCommand(command);
+                }
+                connection.Close();
+            }
+            else
+            {
+
+                // Open connection to existing database file
+                connection = new SqliteConnection("Data Source=" + dbPath);
+
+            }
+        }
+
+
+        public static DatabaseDataHandler Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new DatabaseDataHandler();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// Execute a sql command that isn't supposed to return anything, ex: UPDATE, INSERT, CREATE etc (no connection opening or closing)
+        /// </summary>
+        /// <param name="query">The sql Query to execute</param>
+        private void executeCommand(string query)
+        {
+            using (var contents = connection.CreateCommand())
+            {
+                contents.CommandText = query;
+                var r = contents.ExecuteNonQuery();
+            }
+        }
+        private void getUserData()
+        {
+            using (var contents = connection.CreateCommand())
+            {
+                contents.CommandText = "SELECT * from UserData";
+                var r = contents.ExecuteReader();
+                while (r.Read())//multiple tables
+                {
+                    OreObservableList.Add(new User("balance"));
+                }
+            }
+        }
+        /// <summary>
+        /// Gets the stored data from the local database (prob vahetan nime ära millalgi xd)
+        /// </summary>
+        public void initializeData()
+        {
+            //init some values 
+            OreObservableList = new ObservableCollection<Ore>();
+            UserData = new User();
+            UserData.CurrentOre = "Copper Ore";
+
+            connection.Open();
+            getOreData();
+            getUserData();
+            connection.Close();
+        }
+        /// <summary>
+        /// Gets the stored data from the local database (prob vahetan nime ära millalgi xd)
+        /// </summary>
+        private void getUserData()
+        {
+            using (var contents = connection.CreateCommand())
+            {
+                contents.CommandText = "SELECT * from UserData";
+                var r = contents.ExecuteReader();
+
+                UserData.CurrentPickaxeIndex = Convert.ToInt32(r["currentPickaxe"].ToString());
+                UserData.UserPickaxe = pickaxes[UserData.CurrentPickaxeIndex];
+                UserData.Experience = Convert.ToInt32(r["experience"].ToString());
+                UserData.Currency = Convert.ToInt32(r["currency"].ToString());
+                UserData.Level = Convert.ToInt32(r["expLevel"].ToString());
+            }
+        }
+
+
+
+        /// <summary>
+        /// Saves Data to database
+        /// </summary>
+        public void saveDataDatabase()
+        {
+            connection.Open();
+            executeCommand("UPDATE userData SET experience ='" + UserData.Experience + "', expLevel ='" + UserData.Level + "', currency ='" + UserData.Currency + "', currentPickaxe ='" + UserData.UserPickaxe + "' ;");
+            foreach (var item in OreObservableList)
+            {
+                executeCommand("UPDATE Ores SET oreCount =" + item.OreCount + ", isOreUnlocked = " + Convert.ToByte(item.IsOreUnlockedByUser) + " WHERE oreName = '" + item.Name + "';");
+            }
+            connection.Close();
+        }
+
+        public ObservableCollection<Ore> OreObservableList { get; set; }
+
+        public User UserData { get; set; }
+
+        public List<Pickaxe> pickaxes = new List<Pickaxe>()
+        {
+            {new Pickaxe("Bronze Pickaxe",1, 0)},
+            {new Pickaxe("Iron Pickaxe",2, 30000)},
+            {new Pickaxe("Steel Pickaxe",3, 50000)},
+            {new Pickaxe("Black Pickaxe",4, 70000)},
+            {new Pickaxe("Mithril Pickaxe",5, 90000)},
+            {new Pickaxe("Adamant Pickaxe",6, 110000)},
+            {new Pickaxe("Rune Pickaxe",7, 200000)},
+            {new Pickaxe("Dragon Pickaxe",8, 300000)},
+            {new Pickaxe("3rd age Pickaxe",10, 500000)}
+        };
+        */
+    }
+
+}
